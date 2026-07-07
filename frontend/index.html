@@ -13,8 +13,14 @@
 
 <div class="layout">
     <aside class="sidebar">
-        <a class="active" href="index.html">Dashboard</a>
-        <a href="pages/alumnos.html">Alumnos</a>
+        <a class="active" href="index.html">🏠 Dashboard</a>
+        <a href="pages/alumnos.html">🎓 Alumnos</a>
+        <a href="pages/cursos.html">🏫 Cursos</a>
+        <a href="pages/materias.html">📚 Materias</a>
+        <a href="pages/docentes.html">👨‍🏫 Docentes</a>
+        <a href="pages/inscripciones.html">📝 Inscripciones</a>
+        <a href="pages/asistencias.html">✔️ Asistencias</a>
+        <a href="pages/calificaciones.html">⭐ Calificaciones</a>
     </aside>
 
     <main class="content">
@@ -23,20 +29,42 @@
             <p>Sistema de gestión escolar para administración académica.</p>
         </div>
 
-        <div class="card">
-            <h2>Módulos disponibles</h2>
-            <ul>
-                <li>Gestión de alumnos</li>
-                <li>Inscripciones</li>
-                <li>Cursos</li>
-                <li>Materias</li>
-                <li>Docentes</li>
-                <li>Asistencias</li>
-                <li>Calificaciones</li>
-            </ul>
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <span>🎓</span>
+                <h2 id="alumnosCount">-</h2>
+                <p>Alumnos</p>
+            </div>
+
+            <div class="dashboard-card">
+                <span>🏫</span>
+                <h2 id="cursosCount">-</h2>
+                <p>Cursos</p>
+            </div>
+
+            <div class="dashboard-card">
+                <span>📚</span>
+                <h2 id="materiasCount">-</h2>
+                <p>Materias</p>
+            </div>
+
+            <div class="dashboard-card">
+                <span>👨‍🏫</span>
+                <h2 id="docentesCount">-</h2>
+                <p>Docentes</p>
+            </div>
+
+            <div class="dashboard-card">
+                <span>📝</span>
+                <h2 id="inscripcionesCount">-</h2>
+                <p>Inscripciones</p>
+            </div>
         </div>
     </main>
 </div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
 
 </body>
 </html>

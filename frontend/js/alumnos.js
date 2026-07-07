@@ -36,8 +36,8 @@ function renderAlumnos(alumnos) {
             <td>${alumno.email || "-"}</td>
             <td>
                 <div class="actions">
-                    <button class="btn-secondary" onclick="openEditModal(${alumno.id})">Editar</button>
-                    <button class="btn-danger" onclick="deleteAlumno(${alumno.id})">Eliminar</button>
+                    <button class="btn-secondary btn-icon" onclick="openEditModal(${alumno.id})">✏️</button>
+                    <button class="btn-danger btn-icon" onclick="deleteAlumno(${alumno.id})">🗑️</button>
                 </div>
             </td>
         `;

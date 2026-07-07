@@ -55,6 +55,17 @@ public class InscripcionServiceImpl implements InscripcionService {
                     throw new BusinessException("El alumno ya posee una inscripción para ese ciclo lectivo.");
                 });
 
+        if (curso.getCapacidad() != null) {
+            long inscriptosEnCurso = inscripcionRepository.countByCursoIdAndCicloLectivoId(
+                    curso.getId(),
+                    cicloLectivo.getId()
+            );
+
+            if (inscriptosEnCurso >= curso.getCapacidad()) {
+                throw new BusinessException("El curso alcanzó su capacidad máxima.");
+            }
+        }
+
         Inscripcion inscripcion = new Inscripcion();
         inscripcion.setAlumno(alumno);
         inscripcion.setCurso(curso);

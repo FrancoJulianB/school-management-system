@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface InscripcionRepository extends JpaRepository<Inscripcion, Long> {
 
     Optional<Inscripcion> findByAlumnoIdAndCicloLectivoId(Long alumnoId, Long cicloLectivoId);
+    long countByCursoIdAndCicloLectivoId(Long cursoId, Long cicloLectivoId);
 }

@@ -11,6 +11,7 @@ import com.franco.school_management_system.repository.InscripcionRepository;
 import com.franco.school_management_system.service.interfaces.AsistenciaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     private final InscripcionRepository inscripcionRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<AsistenciaResponse> findAll() {
         return asistenciaRepository.findAll()
                 .stream()
@@ -30,6 +32,7 @@ public class AsistenciaServiceImpl implements AsistenciaService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public AsistenciaResponse findById(Long id) {
         return toResponse(getAsistenciaById(id));
     }

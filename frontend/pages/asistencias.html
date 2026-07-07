@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Asistencias</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<header class="header">School Management System</header>
+
+<div class="layout">
+    <aside class="sidebar">
+        <a href="../index.html">🏠 Dashboard</a>
+        <a href="alumnos.html">🎓 Alumnos</a>
+        <a href="cursos.html">🏫 Cursos</a>
+        <a href="materias.html">📚 Materias</a>
+        <a href="docentes.html">👨‍🏫 Docentes</a>
+        <a href="inscripciones.html">📝 Inscripciones</a>
+        <a class="active" href="asistencias.html">✔️ Asistencias</a>
+        <a href="calificaciones.html">⭐ Calificaciones</a>
+    </aside>
+
+    <main class="content">
+        <div class="card">
+            <div class="page-header">
+                <div>
+                    <h1>Gestión de Asistencias</h1>
+                    <p>Registro diario de asistencia de alumnos inscriptos.</p>
+                </div>
+                <button class="btn-primary" onclick="openCreateAsistenciaModal()">+ Nueva Asistencia</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="toolbar">
+                <h2>Listado de asistencias</h2>
+                <input class="search-input" type="text" id="searchInput" placeholder="Buscar por alumno o fecha">
+            </div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Alumno</th>
+                    <th>Fecha</th>
+                    <th>Presente</th>
+                    <th>Observaciones</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="asistenciasTable"></tbody>
+            </table>
+
+            <div id="message" class="message"></div>
+        </div>
+    </main>
+</div>
+
+<div id="asistenciaModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Nueva Asistencia</h2>
+            <button class="close-button" onclick="closeAsistenciaModal()">×</button>
+        </div>
+
+        <form id="asistenciaForm">
+            <input type="hidden" id="asistenciaId">
+
+            <div class="form-group" id="idDisplayGroup" style="display:none; margin-bottom:16px;">
+                <label>ID</label>
+                <input type="text" id="idDisplay" disabled>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Inscripción</label>
+                    <select id="inscripcionId" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha</label>
+                    <input type="date" id="fecha" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Presente</label>
+                    <select id="presente" required>
+                        <option value="true">Sí</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <input type="text" id="observaciones">
+                </div>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn-primary">Guardar</button>
+            <button type="button" class="btn-secondary" onclick="closeAsistenciaModal()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/modal.js"></script>
+<script src="../js/asistencias.js"></script>
+
+</body>
+</html>

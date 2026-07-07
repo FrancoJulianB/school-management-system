@@ -33,7 +33,12 @@
 
 ---
 
-## Seguridad
+## Facturación y pagos
 
-- RN14. Solo los usuarios autorizados podrán acceder al sistema.
-- RN15. Cada usuario podrá realizar únicamente las acciones permitidas por el rol asignado.
+- RN16. Toda inscripción requiere una factura de matrícula asociada al alumno.
+- RN17. Si el alumno no posee matrícula pagada, la inscripción quedará en estado CONDICIONAL.
+- RN18. Cuando se registre el pago de una factura de matrícula, las inscripciones condicionales del alumno podrán pasar a estado ACTIVA.
+- RN19. Una factura pagada no podrá ser modificada ni eliminada.
+- RN20. El total de una factura deberá calcularse a partir de la suma de sus detalles.
+- RN21. Una factura deberá poseer al menos un detalle asociado.
+- RN22. Los pagos deberán estar asociados a una factura existente.

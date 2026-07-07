@@ -24,7 +24,7 @@ Gestionar alumnos, docentes, cursos, materias, inscripciones y calificaciones.
 
 ## Objetivo General
 
-Desarrollar, diseñar e implementar una solución informática que permita gestionar alumnos, responsables legales, docentes, cursos, materias, inscripciones, asistencias y calificaciones de un establecimiento educativo en un plazo máximo de doce meses.
+Desarrollar, diseñar e implementar una solución informática que permita gestionar alumnos, responsables legales, docentes, cursos, materias, inscripciones, asistencias, calificaciones, facturación de matrícula/cuotas y pagos de un establecimiento educativo en un plazo máximo de doce meses.
 
 | S | M | A | R | T |
 |:-:|:-:|:-:|:-:|:-:|
@@ -52,7 +52,7 @@ El registro inicial de un alumno o responsable legal.
 
 **Hasta**
 
-La emisión del boletín correspondiente al ciclo lectivo.
+Hasta la registración de calificaciones, asistencias y el control administrativo básico de matrícula/cuotas del ciclo lectivo.
 
 ---
 
@@ -71,6 +71,10 @@ La emisión del boletín correspondiente al ciclo lectivo.
 - Registro de calificaciones.
 - Administración de usuarios.
 - Administración de roles.
+- Gestión de facturas de matrícula.
+- Gestión de facturas de cuotas.
+- Registro de pagos.
+- Control administrativo de inscripción según estado de pago.
 
 ### No incluye
 
@@ -78,4 +82,3 @@ La emisión del boletín correspondiente al ciclo lectivo.
 - Gestión contable del establecimiento.
 - Integración con organismos gubernamentales.
 - Plataforma de educación virtual.
-- Gestión de pagos de cuotas escolares.

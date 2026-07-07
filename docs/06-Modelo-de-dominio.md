@@ -46,6 +46,8 @@ Esta entidad permite conservar el historial académico del alumno a lo largo de 
 - Permitir el registro de asistencias.
 - Permitir el registro de calificaciones.
 - Mantener el historial académico correspondiente al ciclo lectivo.
+- Mantener el estado de inscripción según la situación académica y administrativa del alumno.
+- Quedar condicional cuando la matrícula no se encuentre paga.
 
 ---
 
@@ -135,32 +137,42 @@ Representa una nota obtenida por un alumno en una materia.
 
 ---
 
-### Usuario
+### Factura
 
-Representa un usuario con acceso al sistema.
+Representa un comprobante administrativo emitido al alumno por conceptos como matrícula anual o cuotas mensuales.
 
 **Responsabilidades**
 
-- Permitir la autenticación.
-- Asociarse a un rol.
+- Asociarse a un alumno.
+- Registrar fecha de emisión y vencimiento.
+- Mantener el estado administrativo de la deuda.
+- Agrupar uno o más detalles de facturación.
+- Calcular el total facturado.
 
 ---
 
-### Rol
+### DetalleFactura
 
-Representa un conjunto de permisos dentro del sistema.
-
-Ejemplos:
-
-- Administrador
-- Director
-- Docente
-- Administrativo
+Representa cada concepto incluido dentro de una factura.
 
 **Responsabilidades**
 
-- Definir los permisos de acceso del usuario.
+- Describir el concepto facturado.
+- Registrar el monto correspondiente.
+- Permitir que una factura tenga uno o más conceptos.
 
+---
+
+### Pago
+
+Representa el registro de pago de una factura.
+
+**Responsabilidades**
+
+- Asociarse a una factura.
+- Registrar el medio de pago.
+- Registrar la fecha y monto abonado.
+- Permitir actualizar el estado de la factura.
 ---
 
 ## Observaciones

@@ -30,6 +30,15 @@
 - RF15. El sistema deberá administrar roles y permisos.
 - RF16. El sistema deberá generar reportes académicos básicos.
 
+### Gestión administrativa y facturación
+
+- RF17. El sistema deberá permitir generar facturas de matrícula anual.
+- RF18. El sistema deberá permitir generar facturas por cuotas mensuales.
+- RF19. El sistema deberá permitir registrar pagos asociados a una factura.
+- RF20. El sistema deberá cambiar el estado de una factura a pagada cuando se registre un pago.
+- RF21. El sistema deberá permitir que una inscripción quede condicional cuando la matrícula no se encuentre paga.
+- RF22. El sistema deberá activar una inscripción condicional cuando se registre el pago de la matrícula correspondiente.
+
 ---
 
 ## Requerimientos No Funcionales
@@ -42,3 +51,5 @@
 - RNF06. La interfaz deberá ser intuitiva y de fácil utilización.
 - RNF07. El sistema deberá registrar la fecha de creación y modificación de los registros principales.
 - RNF08. El sistema deberá permitir su ejecución dentro de una red local.
+- RNF09. El sistema deberá permitir levantar frontend, backend y base de datos mediante Docker Compose.
+- RNF10. El sistema deberá exponer documentación técnica de la API mediante Swagger/OpenAPI.

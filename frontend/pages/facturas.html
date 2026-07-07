@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Facturas</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<header class="header">School Management System</header>
+
+<div class="layout">
+    <aside class="sidebar">
+        <a href="../index.html">🏠 Dashboard</a>
+        <a href="alumnos.html">🎓 Alumnos</a>
+        <a href="cursos.html">🏫 Cursos</a>
+        <a href="materias.html">📚 Materias</a>
+        <a href="docentes.html">👨‍🏫 Docentes</a>
+        <a href="cursos-materias.html">🔗 Curso-Materia</a>
+        <a href="inscripciones.html">📝 Inscripciones</a>
+        <a href="asistencias.html">✔️ Asistencias</a>
+        <a href="calificaciones.html">⭐ Calificaciones</a>
+        <a class="active" href="facturas.html">💳 Facturas</a>
+    </aside>
+
+    <main class="content">
+        <div class="card">
+            <div class="page-header">
+                <div>
+                    <h1>Gestión de Facturas</h1>
+                    <p>Administración de matrículas, cuotas y pagos simulados.</p>
+                </div>
+                <button class="btn-primary" onclick="openCreateFacturaModal()">+ Nueva Factura</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="toolbar">
+                <h2>Listado de facturas</h2>
+                <input class="search-input" type="text" id="searchInput" placeholder="Buscar por alumno, tipo o estado">
+            </div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Alumno</th>
+                    <th>Tipo</th>
+                    <th>Estado</th>
+                    <th>Emisión</th>
+                    <th>Vencimiento</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="facturasTable"></tbody>
+            </table>
+
+            <div id="message" class="message"></div>
+        </div>
+    </main>
+</div>
+
+<div id="facturaModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="facturaModalTitle">Nueva Factura</h2>
+            <button class="close-button" onclick="closeFacturaModal()">×</button>
+        </div>
+
+        <form id="facturaForm">
+            <input type="hidden" id="facturaId">
+
+            <div class="form-group" id="idDisplayGroup" style="display:none; margin-bottom:16px;">
+                <label>ID</label>
+                <input type="text" id="idDisplay" disabled>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Alumno</label>
+                    <select id="alumnoId" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de factura</label>
+                    <select id="tipoFactura" required>
+                        <option value="">Seleccione</option>
+                        <option value="MATRICULA">Matrícula</option>
+                        <option value="CUOTA">Cuota</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha de vencimiento</label>
+                    <input type="date" id="fechaVencimiento" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Concepto</label>
+                    <input type="text" id="concepto" required placeholder="Ej: Cuota marzo">
+                </div>
+
+                <div class="form-group">
+                    <label>Monto</label>
+                    <input type="number" id="monto" min="0" step="0.01" required>
+                </div>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn-primary">Guardar</button>
+            <button type="button" class="btn-secondary" onclick="closeFacturaModal()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<div id="pagoModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Simulación de pago</h2>
+            <button class="close-button" onclick="closePagoModal()">×</button>
+        </div>
+
+        <input type="hidden" id="pagoFacturaId">
+
+        <div class="card" style="box-shadow:none; padding:16px; background:#f9fafb;">
+            <p><strong>Factura:</strong> <span id="pagoFacturaDisplay"></span></p>
+            <p><strong>Alumno:</strong> <span id="pagoAlumnoDisplay"></span></p>
+            <p><strong>Total:</strong> €<span id="pagoTotalDisplay"></span></p>
+        </div>
+
+        <div class="form-group">
+            <label>Medio de pago</label>
+            <select id="medioPago" required>
+                <option value="EFECTIVO">Efectivo</option>
+                <option value="TARJETA">Tarjeta</option>
+                <option value="TRANSFERENCIA">Transferencia</option>
+            </select>
+        </div>
+
+        <br>
+
+        <button class="btn-primary" onclick="payFactura()">Pagar</button>
+        <button class="btn-secondary" onclick="closePagoModal()">Cancelar</button>
+    </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/modal.js"></script>
+<script src="../js/facturas.js"></script>
+
+</body>
+</html>

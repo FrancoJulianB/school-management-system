@@ -12,6 +12,7 @@ import com.franco.school_management_system.repository.InscripcionRepository;
 import com.franco.school_management_system.service.interfaces.CalificacionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class CalificacionServiceImpl implements CalificacionService {
     private final CursoMateriaRepository cursoMateriaRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<CalificacionResponse> findAll() {
         return calificacionRepository.findAll()
                 .stream()
@@ -32,6 +34,7 @@ public class CalificacionServiceImpl implements CalificacionService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public CalificacionResponse findById(Long id) {
         return toResponse(getCalificacion(id));
     }

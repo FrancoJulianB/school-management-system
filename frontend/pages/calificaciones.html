@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calificaciones</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<header class="header">School Management System</header>
+
+<div class="layout">
+    <aside class="sidebar">
+        <a href="../index.html">🏠 Dashboard</a>
+        <a href="alumnos.html">🎓 Alumnos</a>
+        <a href="cursos.html">🏫 Cursos</a>
+        <a href="materias.html">📚 Materias</a>
+        <a href="docentes.html">👨‍🏫 Docentes</a>
+        <a href="inscripciones.html">📝 Inscripciones</a>
+        <a href="asistencias.html">✔️ Asistencias</a>
+        <a class="active" href="calificaciones.html">⭐ Calificaciones</a>
+    </aside>
+
+    <main class="content">
+        <div class="card">
+            <div class="page-header">
+                <div>
+                    <h1>Gestión de Calificaciones</h1>
+                    <p>Registro de notas por alumno y materia.</p>
+                </div>
+                <button class="btn-primary" onclick="openCreateCalificacionModal()">+ Nueva Calificación</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="toolbar">
+                <h2>Listado de calificaciones</h2>
+                <input class="search-input" type="text" id="searchInput" placeholder="Buscar por alumno, materia o docente">
+            </div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Alumno</th>
+                    <th>Materia</th>
+                    <th>Docente</th>
+                    <th>Nota</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="calificacionesTable"></tbody>
+            </table>
+
+            <div id="message" class="message"></div>
+        </div>
+    </main>
+</div>
+
+<div id="calificacionModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Nueva Calificación</h2>
+            <button class="close-button" onclick="closeCalificacionModal()">×</button>
+        </div>
+
+        <form id="calificacionForm">
+            <input type="hidden" id="calificacionId">
+
+            <div class="form-group" id="idDisplayGroup" style="display:none; margin-bottom:16px;">
+                <label>ID</label>
+                <input type="text" id="idDisplay" disabled>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Inscripción</label>
+                    <select id="inscripcionId" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Curso / Materia</label>
+                    <select id="cursoMateriaId" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Nota</label>
+                    <input type="number" id="nota" min="0" max="10" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tipo de evaluación</label>
+                    <input type="text" id="tipoEvaluacion" placeholder="Parcial, TP, Oral...">
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha</label>
+                    <input type="date" id="fecha">
+                </div>
+
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <input type="text" id="observaciones">
+                </div>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn-primary">Guardar</button>
+            <button type="button" class="btn-secondary" onclick="closeCalificacionModal()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/modal.js"></script>
+<script src="../js/calificaciones.js"></script>
+
+</body>
+</html>

@@ -15,6 +15,7 @@ import com.franco.school_management_system.repository.MateriaRepository;
 import com.franco.school_management_system.service.interfaces.CursoMateriaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class CursoMateriaServiceImpl implements CursoMateriaService {
     private final DocenteRepository docenteRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<CursoMateriaResponse> findAll() {
         return cursoMateriaRepository.findAll()
                 .stream()
@@ -36,6 +38,7 @@ public class CursoMateriaServiceImpl implements CursoMateriaService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public CursoMateriaResponse findById(Long id) {
         return toResponse(getCursoMateriaById(id));
     }

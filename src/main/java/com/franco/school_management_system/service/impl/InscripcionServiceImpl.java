@@ -16,6 +16,7 @@ import com.franco.school_management_system.repository.InscripcionRepository;
 import com.franco.school_management_system.service.interfaces.InscripcionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,6 +31,7 @@ public class InscripcionServiceImpl implements InscripcionService {
     private final CicloLectivoRepository cicloLectivoRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public List<InscripcionResponse> findAll() {
         return inscripcionRepository.findAll()
                 .stream()
@@ -38,6 +40,7 @@ public class InscripcionServiceImpl implements InscripcionService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public InscripcionResponse findById(Long id) {
         return toResponse(getInscripcionById(id));
     }

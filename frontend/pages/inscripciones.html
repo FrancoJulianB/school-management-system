@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inscripciones</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<header class="header">School Management System</header>
+
+<div class="layout">
+    <aside class="sidebar">
+        <a href="../index.html">🏠 Dashboard</a>
+        <a href="alumnos.html">🎓 Alumnos</a>
+        <a href="cursos.html">🏫 Cursos</a>
+        <a href="materias.html">📚 Materias</a>
+        <a href="docentes.html">👨‍🏫 Docentes</a>
+        <a class="active" href="inscripciones.html">📝 Inscripciones</a>
+        <a href="asistencias.html">✔️ Asistencias</a>
+        <a href="calificaciones.html">⭐ Calificaciones</a>
+    </aside>
+
+    <main class="content">
+        <div class="card">
+            <div class="page-header">
+                <div>
+                    <h1>Gestión de Inscripciones</h1>
+                    <p>Asignación de alumnos a cursos por ciclo lectivo.</p>
+                </div>
+                <button class="btn-primary" onclick="openCreateInscripcionModal()">+ Nueva Inscripción</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="toolbar">
+                <h2>Listado de inscripciones</h2>
+                <input class="search-input" type="text" id="searchInput" placeholder="Buscar por alumno, curso o año">
+            </div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Alumno</th>
+                    <th>Curso</th>
+                    <th>Ciclo</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="inscripcionesTable"></tbody>
+            </table>
+
+            <div id="message" class="message"></div>
+        </div>
+    </main>
+</div>
+
+<div id="inscripcionModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Nueva Inscripción</h2>
+            <button class="close-button" onclick="closeInscripcionModal()">×</button>
+        </div>
+
+        <form id="inscripcionForm">
+            <input type="hidden" id="inscripcionId">
+
+            <div class="form-group" id="idDisplayGroup" style="display:none; margin-bottom:16px;">
+                <label>ID</label>
+                <input type="text" id="idDisplay" disabled>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Alumno</label>
+                    <select id="alumnoId" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Curso</label>
+                    <select id="cursoId" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Ciclo Lectivo</label>
+                    <select id="cicloLectivoId" required></select>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha de inscripción</label>
+                    <input type="date" id="fechaInscripcion">
+                </div>
+
+                <div class="form-group">
+                    <label>Estado</label>
+                    <select id="estado">
+                        <option value="ACTIVA">Activa</option>
+                        <option value="BAJA">Baja</option>
+                        <option value="FINALIZADA">Finalizada</option>
+                    </select>
+                </div>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn-primary">Guardar</button>
+            <button type="button" class="btn-secondary" onclick="closeInscripcionModal()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/modal.js"></script>
+<script src="../js/inscripciones.js"></script>
+
+</body>
+</html>

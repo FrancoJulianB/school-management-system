@@ -208,3 +208,16 @@ th { background: #f9fafb; }
     padding: 8px 10px;
     font-size: 14px;
 }
+
+.dashboard-sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 24px;
+}
+
+@media (min-width: 1200px) {
+    .dashboard-sections {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

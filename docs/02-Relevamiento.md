@@ -46,6 +46,4 @@ Durante el relevamiento se identificó la necesidad de conservar el historial ac
 
 Para ello, se decidió modelar la inscripción como una entidad independiente, permitiendo registrar la relación entre un alumno, un curso y un ciclo lectivo sin perder información histórica.
 
-Asimismo, se identificó la necesidad de administrar usuarios con distintos niveles de permisos para garantizar la seguridad de la información.
-
 También se identificó que el proceso de inscripción no depende únicamente de criterios académicos, sino también de condiciones administrativas. Por este motivo, se incorporó la facturación de matrícula y cuotas como parte del sistema, permitiendo que una inscripción pueda quedar activa o condicional según el estado de pago correspondiente.

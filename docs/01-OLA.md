@@ -32,12 +32,6 @@ Desarrollar, diseñar e implementar una solución informática que permita gesti
 
 ---
 
-## Objetivo Específico
-
-Desarrollar un sistema que permita administrar la información académica de un establecimiento educativo, incluyendo la gestión de alumnos, responsables legales, docentes, cursos, materias, inscripciones, asistencias, calificaciones y usuarios del sistema, garantizando la trazabilidad de la información durante cada ciclo lectivo.
-
----
-
 ## Enfoque
 
 **Bottom-Up:** desde lo general hacia lo particular.
@@ -69,8 +63,6 @@ Hasta la registración de calificaciones, asistencias y el control administrativ
 - Gestión de inscripciones.
 - Registro de asistencias.
 - Registro de calificaciones.
-- Administración de usuarios.
-- Administración de roles.
 - Gestión de facturas de matrícula.
 - Gestión de facturas de cuotas.
 - Registro de pagos.

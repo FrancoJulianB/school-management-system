@@ -2,22 +2,19 @@ package com.franco.school_management_system.service.impl;
 
 import com.franco.school_management_system.dto.InscripcionRequest;
 import com.franco.school_management_system.dto.InscripcionResponse;
-import com.franco.school_management_system.entity.Alumno;
-import com.franco.school_management_system.entity.CicloLectivo;
-import com.franco.school_management_system.entity.Curso;
-import com.franco.school_management_system.entity.Inscripcion;
+import com.franco.school_management_system.entity.*;
+import com.franco.school_management_system.entity.enums.EstadoFactura;
 import com.franco.school_management_system.entity.enums.EstadoInscripcion;
+import com.franco.school_management_system.entity.enums.TipoFactura;
 import com.franco.school_management_system.exception.BusinessException;
 import com.franco.school_management_system.exception.ResourceNotFoundException;
-import com.franco.school_management_system.repository.AlumnoRepository;
-import com.franco.school_management_system.repository.CicloLectivoRepository;
-import com.franco.school_management_system.repository.CursoRepository;
-import com.franco.school_management_system.repository.InscripcionRepository;
+import com.franco.school_management_system.repository.*;
 import com.franco.school_management_system.service.interfaces.InscripcionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,6 +26,7 @@ public class InscripcionServiceImpl implements InscripcionService {
     private final AlumnoRepository alumnoRepository;
     private final CursoRepository cursoRepository;
     private final CicloLectivoRepository cicloLectivoRepository;
+    private final FacturaRepository facturaRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -46,6 +44,7 @@ public class InscripcionServiceImpl implements InscripcionService {
     }
 
     @Override
+    @Transactional
     public InscripcionResponse create(InscripcionRequest request) {
         Alumno alumno = getAlumnoById(request.alumnoId());
         Curso curso = getCursoById(request.cursoId());
@@ -63,14 +62,27 @@ public class InscripcionServiceImpl implements InscripcionService {
         inscripcion.setFechaInscripcion(
                 request.fechaInscripcion() != null ? request.fechaInscripcion() : LocalDate.now()
         );
-        inscripcion.setEstado(
-                request.estado() != null ? request.estado() : EstadoInscripcion.ACTIVA
-        );
+
+        boolean matriculaPagada = facturaRepository
+                .findByAlumnoIdAndTipoFacturaAndEstado(
+                        alumno.getId(),
+                        TipoFactura.MATRICULA,
+                        EstadoFactura.PAGADA
+                )
+                .isPresent();
+
+        if (matriculaPagada) {
+            inscripcion.setEstado(EstadoInscripcion.ACTIVA);
+        } else {
+            inscripcion.setEstado(EstadoInscripcion.CONDICIONAL);
+            crearFacturaMatriculaSiNoExiste(alumno);
+        }
 
         return toResponse(inscripcionRepository.save(inscripcion));
     }
 
     @Override
+    @Transactional
     public InscripcionResponse update(Long id, InscripcionRequest request) {
         Inscripcion inscripcion = getInscripcionById(id);
 
@@ -94,10 +106,42 @@ public class InscripcionServiceImpl implements InscripcionService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         Inscripcion inscripcion = getInscripcionById(id);
         inscripcion.setEstado(EstadoInscripcion.BAJA);
         inscripcionRepository.save(inscripcion);
+    }
+
+    private void crearFacturaMatriculaSiNoExiste(Alumno alumno) {
+        boolean existeFacturaPendiente = facturaRepository
+                .findByAlumnoIdAndTipoFacturaAndEstado(
+                        alumno.getId(),
+                        TipoFactura.MATRICULA,
+                        EstadoFactura.PENDIENTE
+                )
+                .isPresent();
+
+        if (existeFacturaPendiente) {
+            return;
+        }
+
+        Factura factura = new Factura();
+        factura.setAlumno(alumno);
+        factura.setTipoFactura(TipoFactura.MATRICULA);
+        factura.setEstado(EstadoFactura.PENDIENTE);
+        factura.setFechaEmision(LocalDate.now());
+        factura.setFechaVencimiento(LocalDate.now().plusDays(15));
+
+        DetalleFactura detalle = new DetalleFactura();
+        detalle.setFactura(factura);
+        detalle.setConcepto("Matrícula anual");
+        detalle.setMonto(new BigDecimal("350.00"));
+
+        factura.getDetalles().add(detalle);
+        factura.setTotal(new BigDecimal("350.00"));
+
+        facturaRepository.save(factura);
     }
 
     private Inscripcion getInscripcionById(Long id) {

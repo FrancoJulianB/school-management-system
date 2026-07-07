@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Materias</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<header class="header">School Management System</header>
+
+<div class="layout">
+    <aside class="sidebar">
+        <a href="../index.html">🏠 Dashboard</a>
+        <a href="alumnos.html">🎓 Alumnos</a>
+        <a href="cursos.html">🏫 Cursos</a>
+        <a class="active" href="materias.html">📚 Materias</a>
+        <a href="docentes.html">👨‍🏫 Docentes</a>
+        <a href="inscripciones.html">📝 Inscripciones</a>
+        <a href="asistencias.html">✔️ Asistencias</a>
+        <a href="calificaciones.html">⭐ Calificaciones</a>
+    </aside>
+
+    <main class="content">
+        <div class="card">
+            <div class="page-header">
+                <div>
+                    <h1>Gestión de Materias</h1>
+                    <p>Administración de materias del establecimiento.</p>
+                </div>
+                <button class="btn-primary" onclick="openCreateMateriaModal()">+ Nueva Materia</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="toolbar">
+                <h2>Listado de materias</h2>
+                <input class="search-input" type="text" id="searchInput" placeholder="Buscar por nombre">
+            </div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="materiasTable"></tbody>
+            </table>
+
+            <div id="message" class="message"></div>
+        </div>
+    </main>
+</div>
+
+<div id="materiaModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Nueva Materia</h2>
+            <button class="close-button" onclick="closeMateriaModal()">×</button>
+        </div>
+
+        <form id="materiaForm">
+            <input type="hidden" id="materiaId">
+
+            <div class="form-group" id="idDisplayGroup" style="display:none; margin-bottom:16px;">
+                <label>ID</label>
+                <input type="text" id="idDisplay" disabled>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" id="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <input type="text" id="descripcion">
+                </div>
+            </div>
+
+            <br>
+
+            <button type="submit" class="btn-primary">Guardar</button>
+            <button type="button" class="btn-secondary" onclick="closeMateriaModal()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/modal.js"></script>
+<script src="../js/materias.js"></script>
+
+</body>
+</html>
